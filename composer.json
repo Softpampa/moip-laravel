@@ -1,0 +1,24 @@
+{
+    "name": "softpampa/moip-laravel",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nícolas Luís Huber",
+            "email": "nicolasluishuber@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.2.*",
+        "softpampa/moip-sdk-php": "^0.0.1"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0": {
+            "Softpampa\\MoipLaravel\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
