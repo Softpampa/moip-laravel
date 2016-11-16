@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class MoipSdkLaravelCreateCustomersTable extends Migration {
+class MoipLaravelCreateCustomersTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -15,7 +15,7 @@ class MoipSdkLaravelCreateCustomersTable extends Migration {
 		Schema::create('moip_customers', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('moip_code')
+			$table->string('code');
 			$table->integer('user_id')->unsigned();
 			$table->unique('user_id');
 		});
