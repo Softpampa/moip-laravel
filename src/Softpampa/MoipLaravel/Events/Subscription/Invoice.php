@@ -16,10 +16,11 @@ class Invoice {
 
     public function onStatusUpdated($data)
     {
+        $id = $data['resource']['id'];
         $status = $data['resource']['status'];
 
         MoipInvoice::byMoipId($id)->update([
-            'status' => $status
+            'status' => $status['description']
         ]);
     }
 

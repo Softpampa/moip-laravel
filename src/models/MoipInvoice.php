@@ -48,7 +48,7 @@ class MoipInvoice extends Eloquent {
 	 */
 	public function payments()
 	{
-		return $this->hasMany(MoipPayment::class, 'code', 'subscription_code');
+		return $this->hasMany(MoipPayment::class, 'invoice_id', 'moip_id');
 	}
 
 	public function scopeByMoipId($query, $id)

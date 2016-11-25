@@ -32,9 +32,14 @@ class SubscriptionsListener {
     public function subscribe($events)
     {
         foreach ($this->listeners as $listen) {
-            $eventName = explode('.', $listen); 
+            $eventName = explode('.', $listen);
             $class = ucfirst(strtolower($eventName[0]));
             $method = ucfirst(strtolower($eventName[1]));
+
+            if (strpos($method, '_')) {
+                $tmp = explode('_', $method);
+                $method = $tmp[0] . ucfirst($tmp[1]);
+            }
 
             $eventName = 'MOIP.SUBSCRIPTIONS.' . $listen;
             $handler = "\Softpampa\MoipLaravel\Events\Subscription\\{$class}@on{$method}";

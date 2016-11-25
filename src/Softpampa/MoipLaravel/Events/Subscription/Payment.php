@@ -10,16 +10,17 @@ class Payment {
         $id = $data['id'];
 
         if (MoipPayment::byMoipId($id)->count() == 0) {
-            MoipPayment::create($id);            
+            MoipPayment::create($data);            
         }
     }
 
     public function onStatusUpdated($data)
     {
+        $id = $data['resource']['id'];
         $status = $data['resource']['status'];
 
         MoipPayment::byMoipId($id)->update([
-            'status' => $status
+            'status' => $status['description']
         ]);
     }
 
