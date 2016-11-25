@@ -18,8 +18,8 @@ class MoipLaravelCreateSubscriptionsTable extends Migration {
 			$table->string('code');
 			$table->string('status');
 			$table->integer('amount')->unsigned();
-			$table->integer('plan_id')->unsigned();
-			$table->integer('customer_id')->unsigned();
+			$table->string('plan_code');
+			$table->string('customer_code');
 			$table->date('next_invoice_date');
 			$table->timestamps();
 		});

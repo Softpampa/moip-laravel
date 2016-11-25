@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'webhook-message' => 'Obrigado! Acabamos de capturar o evento :event'
+    'response' => 'Obrigado! Acabamos de capturar o evento :event'
 ];

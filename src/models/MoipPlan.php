@@ -25,17 +25,35 @@ class MoipPlan extends Eloquent {
         'interval_unit',
     ];
 
+    /**
+     * Create a new plan
+     * 
+     * @param  array  $data
+     * @return void
+     */
     public static function create(array $data)
     {
-        parent::create($this->prepareData($data));
+        parent::create(self::prepareData($data));
     }
 
+    /**
+     * Update a plan
+     * 
+     * @param  array  $data
+     * @return void
+     */
     public function update(array $data = [])
     {
-        parent::update($data);
+        parent::update(self::prepareData($data));
     }
 
-    protected function prepareData($data)
+    /**
+     * Prepare data from Moip POST to database table
+     * 
+     * @param  array  $data
+     * @return array
+     */
+    protected static function prepareData($data)
     {
         $data['trial_enable'] = $data['trial']['enabled'];
         $data['trial_days'] = $data['trial']['days'];
@@ -46,6 +64,13 @@ class MoipPlan extends Eloquent {
         return $data;
     }
 
+    /**
+     * Filter plans by code
+     * 
+     * @param  [type] $query
+     * @param  [type] $code
+     * @return [type]
+     */
     public function scopeByCode($query, $code)
     {
         return $query->whereCode($code)->first();

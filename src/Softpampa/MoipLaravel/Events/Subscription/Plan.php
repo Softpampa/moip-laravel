@@ -12,7 +12,13 @@ class Plan {
      */
     public function onCreated($data)
     {
-        MoipPlan::create($data['resource']);
+        $data = $data['resource'];
+        $code = $data['code'];
+
+        if (MoipPlan::byCode($code)->count() == 0) {
+            MoipPlan::create($data);            
+        }
+
     }
 
     /**
