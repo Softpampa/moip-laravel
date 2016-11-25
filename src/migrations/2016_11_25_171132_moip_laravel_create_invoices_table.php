@@ -15,6 +15,7 @@ class MoipLaravelCreateInvoicesTable extends Migration {
 		Schema::create('moip_invoices', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->integer('moip_id')->unsigned();
 			$table->integer('amount')->unsigned();
 			$table->string('subscription_code');
 			$table->string('status');

@@ -18,6 +18,7 @@ class MoipLaravelCreatePaymentsTable extends Migration {
 			$table->integer('amount')->unsigned();
 			$table->integer('invoice_id')->unsigned();
 			$table->integer('moip_id')->unsigned();
+			$table->integer('moip_trans_id')->unsigned();
 			$table->string('status');
 			$table->timestamps();
 		});

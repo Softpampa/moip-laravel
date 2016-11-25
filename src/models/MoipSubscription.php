@@ -120,7 +120,7 @@ class MoipSubscription extends Eloquent {
      */
     public function invoices()
     {
-        return $this->hasMany(MoipInvoice::class, 'code', 'subscription_code');
+        return $this->hasMany(MoipInvoice::class, 'subscription_code', 'code');
     }
 
     /**
