@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class MoipLaravelCreateSubscriptionsTable extends Migration {
+class MoipLaravelCreatePaymentsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,16 +12,13 @@ class MoipLaravelCreateSubscriptionsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('moip_subscriptions', function(Blueprint $table)
+		Schema::create('moip_payments', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('code');
-			$table->string('status');
 			$table->integer('amount')->unsigned();
-			$table->string('plan_code');
-			$table->string('customer_code');
-			$table->date('next_invoice_date');
-			$table->date('expiration_date')->nullable();
+			$table->integer('invoice_id')->unsigned();
+			$table->integer('moip_id')->unsigned();
+			$table->string('status');
 			$table->timestamps();
 		});
 	}
@@ -33,7 +30,7 @@ class MoipLaravelCreateSubscriptionsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('moip_subscriptions');
+		Schema::drop('moip_payments');
 	}
 
 }

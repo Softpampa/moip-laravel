@@ -16,6 +16,7 @@ class MoipSubscription extends Eloquent {
         'status',
         'plan_code',
         'customer_code',
+        'expiration_date',
         'next_invoice_date',
     ];
 
@@ -39,6 +40,39 @@ class MoipSubscription extends Eloquent {
     public function update(array $data = [])
     {
         parent::update(self::prepareData($data));
+    }
+
+    /**
+     * Activate a subscription
+     * 
+     * @return void
+     */
+    public function active()
+    {
+        $this->status = 'ACTIVE';
+        $this->save();
+    }
+
+    /**
+     * Suspend a subscription
+     * 
+     * @return void
+     */
+    public function suspend()
+    {
+        $this->status = 'SUSPENDED';
+        $this->save();
+    }
+
+    /**
+     * Cancel a subscription
+     * 
+     * @return void
+     */
+    public function cancel()
+    {
+        $this->status = 'CANCELED';
+        $this->save();
     }
 
     /**
@@ -70,12 +104,23 @@ class MoipSubscription extends Eloquent {
     }
 
     /**
-     * Plan related with
-     * @return [type] [description]
+     * Plan related to the subscription
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function plan()
     {
         return $this->belongsTo(MoipPlan::class, 'plan_code', 'code');
+    }
+
+    /**
+     * Invoices related to the subscription
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function invoices()
+    {
+        return $this->hasMany(MoipInvoice::class, 'code', 'subscription_code');
     }
 
     /**

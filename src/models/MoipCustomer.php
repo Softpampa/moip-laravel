@@ -7,5 +7,4 @@ class MoipCustomer extends Eloquent {
     protected $fillable = [
         'code'
     ];
-
 }

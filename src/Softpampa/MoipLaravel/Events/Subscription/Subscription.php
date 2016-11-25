@@ -18,6 +18,58 @@ class Subscription {
         if (MoipSubscription::byCode($code)->count() == 0) {
             MoipSubscription::create($data);            
         }
-
     }
+
+    /**
+     * When subscription was update.
+     * 
+     * @param  array  $data
+     * @return void
+     */
+    public function onUpdate($data)
+    {
+        $code = $data['resource']['code'];
+
+        MoipSubscription::byCode($code)->update($data['resource']);
+    }
+
+    /**
+     * When plan was inactivated.
+     * 
+     * @param  array  $data
+     * @return void
+     */
+    public function onActivated($data)
+    {
+        $code = $data['resource']['code'];
+
+        MoipSubscription::byCode($code)->active();
+    }
+
+    /**
+     * When plan was inactivated.
+     * 
+     * @param  array  $data
+     * @return void
+     */
+    public function onSuspended($data)
+    {
+        $code = $data['resource']['code'];
+
+        MoipSubscription::byCode($code)->suspend();
+    }
+
+    /**
+     * When plan was inactivated.
+     * 
+     * @param  array  $data
+     * @return void
+     */
+    public function onCanceled($data)
+    {
+        $code = $data['resource']['code'];
+
+        MoipSubscription::byCode($code)->cancel();
+    }
+
 }
