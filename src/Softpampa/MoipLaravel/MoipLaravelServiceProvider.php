@@ -2,7 +2,7 @@
 
 use Softpampa\Moip\Moip;
 use Softpampa\Moip\MoipBasicAuth;
-use Softpampa\MoipLaravel\Events\Subscriptions;
+use Softpampa\MoipLaravel\Events\SubscriptionsListener;
 use Illuminate\Support\ServiceProvider;
 
 class MoipLaravelServiceProvider extends ServiceProvider {
@@ -22,7 +22,11 @@ class MoipLaravelServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 		$this->package('softpampa/moip-laravel');
+
+		// Include package routes
 		include __DIR__.'/../../routes.php';
+
+		$this->app['events']->subscribe(new SubscriptionsListener);
 	}
 
 	/**
@@ -47,9 +51,7 @@ class MoipLaravelServiceProvider extends ServiceProvider {
 
 		$this->app->singleton('moip-payments', function($app) {
 			return $app['moip-sdk']->payments();
-		});
-
-		$this->app['events']->subscribe(new Subscriptions);
+		});		
 	}
 
 	/**
@@ -62,8 +64,14 @@ class MoipLaravelServiceProvider extends ServiceProvider {
 		return array();
 	}
 
+	/**
+	 * Get package config
+	 * 
+	 * @param  string  $key
+	 * @return mixed
+	 */
 	public function getConfig($key)
 	{
-		return $this->app['config']["moip-laravel::$key"];
+		return $this->app['config']["moip-laravel::{$key}"];
 	}
 }

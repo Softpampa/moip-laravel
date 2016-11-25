@@ -1,16 +1,19 @@
 <?php namespace Softpampa\MoipLaravel\Controllers;
 
+use Lang;
 use Input;
 use Event;
+use Response;
 
 class WebHookController extends \BaseController {
 
     public function handle() {
-        // Fire event
         $eventName = 'MOIP.SUBSCRIPTIONS.' . Input::get('event');
+
+        // Fire event
         Event::fire(strtoupper($eventName), [Input::all()]);
 
-        return strtoupper($eventName);
+        return Response::make(Lang::get('moip.webhook-message', ['event' => $eventName]), 200);
     }
 
 }
