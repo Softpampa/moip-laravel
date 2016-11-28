@@ -10,17 +10,19 @@
     "require": {
         "php": ">=5.4.0",
         "illuminate/support": "4.2.*",
-        "softpampa/moip-sdk-php": "^0.0.1"
+        "softpampa/moip-sdk-php": "dev-master#d9464c3322209147bd9980d9d2d7fb726e81a94a"
     },
     "autoload": {
         "classmap": [
             "src/migrations",
             "src/models",
+            "src/commands",
             "src/controllers"
         ],
         "psr-0": {
             "Softpampa\\MoipLaravel\\": "src/"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
