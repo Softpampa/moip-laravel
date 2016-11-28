@@ -25,9 +25,10 @@ class MoipSetupCommand extends Command {
      */
     public function fire()
     {
-        if ($this->confirm('Do you wish to set Moip webhook? [yes|no]')) {
-            $this->setUserPreferences();
-        }
+        $this->info('Setting up Moip notification rules.');
+
+        $custom = $this->ask('WebHook URL:');
+        $this->setUserPreferences($custom);
     }
 
     /**
@@ -35,10 +36,10 @@ class MoipSetupCommand extends Command {
      * 
      * @var void
      */
-    protected function setUserPreferences()
+    protected function setUserPreferences($custom)
     {
         $preferences = app('moip-subscriptions')->preferences();
-        $preferences->setWebHook(route('webhook.moip.subscriptions'));
+        $preferences->setWebHook(! empty($custom) ? $custom : route('webhook.moip.subscriptions'));
         $preferences->save();
 
         $this->info('Done!');

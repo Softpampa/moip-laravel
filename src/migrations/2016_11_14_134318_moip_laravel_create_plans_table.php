@@ -17,17 +17,17 @@ class MoipLaravelCreatePlansTable extends Migration {
 			$table->increments('id');
 			$table->string('code');
 			$table->string('name');
-			$table->string('status');
+			$table->string('status')->default('ACTIVE');
 			$table->string('description');
 			$table->integer('amount')->unsigned();
-			$table->integer('setup_fee')->unsigned();
-			$table->integer('max_qty')->unsigned();
-			$table->integer('billing_cycles')->unsigned();
-			$table->integer('interval_length')->unsigned();
-			$table->string('interval_unit', 10)->unsigned();
+			$table->integer('setup_fee')->unsigned()->nullable();
+			$table->integer('max_qty')->unsigned()->nullable();
+			$table->integer('billing_cycles')->unsigned()->nullable();
+			$table->integer('interval_length')->unsigned()->default(1);
+			$table->string('interval_unit', 10)->unsigned()->default('MONTH');
 			$table->boolean('trial_enable')->default(false);
-			$table->integer('trial_days')->unsigned();
-			$table->boolean('trial_hold_setup_fee');
+			$table->integer('trial_days')->unsigned()->nullable();
+			$table->boolean('trial_hold_setup_fee')->default(false);
 			$table->timestamps();
 		});
 	}

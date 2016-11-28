@@ -44,9 +44,7 @@ class Plan {
     {
         $code = $data['resource']['code'];
 
-        MoipPlan::byCode($code)->update([
-            'status' => 'INACTIVE'
-        ]);
+        MoipPlan::byCode($code)->inactivate();
     }
 
     /**
@@ -59,8 +57,6 @@ class Plan {
     {
         $code = $data['resource']['code'];
         
-        MoipPlan::byCode($code)->update([
-            'status' => 'ACTIVE'
-        ]);
+        MoipPlan::byCode($code)->activate();
     }
 }

@@ -55,13 +55,45 @@ class MoipPlan extends Eloquent {
      */
     protected static function prepareData($data)
     {
-        $data['trial_enable'] = $data['trial']['enabled'];
-        $data['trial_days'] = $data['trial']['days'];
-        $data['trial_hold_setup_fee'] = $data['trial']['hold_setup_fee'];
-        $data['interval_length'] = $data['interval']['length'];
-        $data['interval_unit'] = $data['interval']['unit'];
+        if (isset($data['trial'])) {
+            $trial = $data['trial'];
+
+            $data['trial_enable'] = $trial['enabled'];
+            $data['trial_days'] = $trial['days'];
+            $data['trial_hold_setup_fee'] = $trial['hold_setup_fee'];
+        }
+
+        if (isset($data['interval'])) {
+            $interval = $data['interval'];
+
+            $data['interval_length'] = $interval['length'];
+            $data['interval_unit'] = $interval['unit'];
+        }
+
 
         return $data;
+    }
+
+    /**
+     * Inactivate a plan
+     * 
+     * @return void
+     */
+    public function inactivate()
+    {
+        $this->status = 'INACTIVE';
+        $this->save();
+    }
+
+    /**
+     * Activate a plan
+     * 
+     * @return void
+     */
+    public function activate()
+    {
+        $this->status = 'ACTIVE';
+        $this->save();
     }
 
     /**
