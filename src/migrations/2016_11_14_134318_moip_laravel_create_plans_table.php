@@ -24,7 +24,7 @@ class MoipLaravelCreatePlansTable extends Migration {
 			$table->integer('max_qty')->unsigned()->nullable();
 			$table->integer('billing_cycles')->unsigned()->nullable();
 			$table->integer('interval_length')->unsigned()->default(1);
-			$table->string('interval_unit', 10)->unsigned()->default('MONTH');
+			$table->string('interval_unit', 10)->default('MONTH');
 			$table->boolean('trial_enable')->default(false);
 			$table->integer('trial_days')->unsigned()->nullable();
 			$table->boolean('trial_hold_setup_fee')->default(false);
