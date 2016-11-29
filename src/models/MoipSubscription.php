@@ -124,11 +124,11 @@ class MoipSubscription extends Eloquent {
     }
 
     /**
-     * Filter plans by code
+     * Filter subscription by code
      * 
-     * @param  [type] $query
-     * @param  [type] $code
-     * @return [type]
+     * @param  \Illuminate\Database\Query\Builder  $query
+     * @param  int  $code
+     * @return \Illuminate\Database\Query\Builder
      */
     public function scopeByCode($query, $code)
     {
