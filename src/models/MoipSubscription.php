@@ -21,6 +21,15 @@ class MoipSubscription extends Eloquent {
     ];
 
     /**
+     * Carbon dates
+     * 
+     * @var array
+     */
+    protected $dates = [
+        'next_invoice_date'
+    ];
+
+    /**
      * Create a new subscription
      * 
      * @param  array  $data
