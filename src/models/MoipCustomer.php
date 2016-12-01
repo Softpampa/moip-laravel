@@ -3,8 +3,23 @@
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class MoipCustomer extends Eloquent {
-    
-    protected $fillable = [
-        'code'
-    ];
+
+	/**
+	 * Mass Assignment
+	 *
+	 * @var array
+	 */
+	protected $fillable = [
+		'code'
+	];
+
+	/**
+	 * Related subscriptions
+	 *
+	 * @return void
+	 */
+	public function subscriptions()
+	{
+		return $this->hasMany(MoipSubscription::class, 'customer_code', 'code');
+	}
 }
