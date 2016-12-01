@@ -18,6 +18,7 @@ class MoipLaravelCreateCustomersTable extends Migration {
 			$table->string('code');
 			$table->integer('user_id')->unsigned();
 			$table->unique('user_id');
+			$table->timestamps();
 		});
 	}
 
