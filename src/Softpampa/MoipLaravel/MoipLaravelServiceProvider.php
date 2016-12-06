@@ -24,6 +24,7 @@ class MoipLaravelServiceProvider extends ServiceProvider {
 		$this->package('softpampa/moip-laravel');
 		$this->commands('\Softpampa\MoipLaravel\Commands\MoipSetupCommand');
 		$this->commands('\Softpampa\MoipLaravel\Commands\MoipImportCommand');
+		$this->commands('\Softpampa\MoipLaravel\Commands\MoipImportSubscriptionCommand');
 
 		// Include package routes
 		include __DIR__.'/../../routes.php';
