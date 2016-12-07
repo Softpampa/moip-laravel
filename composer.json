@@ -1,6 +1,6 @@
 {
     "name": "softpampa/moip-laravel",
-    "description": "",
+    "description": "Laravel package for Moip SDK PHP",
     "authors": [
         {
             "name": "Nícolas Luís Huber",
@@ -10,7 +10,7 @@
     "require": {
         "php": ">=5.4.0",
         "illuminate/support": "4.2.*",
-        "softpampa/moip-sdk-php": "^0.0.4"
+        "softpampa/moip-sdk-php": "^1.0.0"
     },
     "autoload": {
         "classmap": [

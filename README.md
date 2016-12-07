@@ -30,6 +30,18 @@ $ php artisan config:publish softpampa/moip-laravel
 $ php artisan migrate --package="softpampa/moip-laravel"
 ``` 
 
+Importar planos e assinaturas
+
+```shell
+$ php artisan moip:import
+```
+
+Importar uma assinatura pelo código
+
+```shell
+$ php artisan moip:subscription:import $CODE
+```
+
 ## Utilizando
 
 ```php
@@ -45,9 +57,26 @@ class User extends Eloquent {
     }
 
 }
+```
+
+Alguns exemplos
+
+```php
+<?php
+
+$user = User::find(1);
 
 // Retorna todas assinaturas do customer
-User::find(1)->moip->subscriptions->toArray();
+$user->moip->subscriptions->toArray();
+
+// Retorna um assinatura por código
+$user->moip->subscriptions()->byCode('882173')->first();
+
+// Retorna o plano de um assinatura
+$user->moip->subscriptions()->byCode('882173')->first()->plan;
+
+// Retorna o cliente de um assinatura
+$user->moip->subscriptions()->byCode('882173')->first()->customer;
 ```
 
 ## Webhook
@@ -66,8 +95,12 @@ Caso a aplicações esteja rodando no localhost é necessário criar um WebTunne
 $ php artisan serve
 $ ngrok http 8000
 
-# Informar URL: {random}.ngrok.io/webhook/moip/subscription
+# Informar URL: {subdomain}.ngrok.io/webhook/moip/subscription
 $ php artisan moip:setup
 ```
 
+## Todo
+
+ * Criar controle ao importar dados para existir duplicados.
+ * Buscar na API se assinatura, fatura, pagamento ou plano não extiverem no banco de dados
 
