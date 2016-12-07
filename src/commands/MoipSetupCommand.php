@@ -1,4 +1,4 @@
-<?php namespace Softpampa\MoipLaravel\Commands\Subscriptions;
+<?php namespace Softpampa\MoipLaravel\Commands;
 
 use Illuminate\Console\Command;
 
@@ -25,9 +25,9 @@ class MoipSetupCommand extends Command {
      */
     public function fire()
     {
-        $this->info('Setting up Moip notification rules.');
+        $this->info('Setting up Moip Subscription Webook');
 
-        $custom = $this->ask('WebHook URL:');
+        $custom = $this->ask('URL:');
         $this->setUserPreferences($custom);
     }
 

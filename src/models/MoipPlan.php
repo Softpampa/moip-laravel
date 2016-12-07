@@ -31,7 +31,7 @@ class MoipPlan extends Eloquent {
      * @param  array  $data
      * @return void
      */
-    public static function create(array $data)
+    public static function firstOrCreate(array $data)
     {
         parent::create(self::prepareData($data));
     }
@@ -99,9 +99,9 @@ class MoipPlan extends Eloquent {
     /**
      * Filter plans by code
      * 
-     * @param  [type] $query
-     * @param  [type] $code
-     * @return [type]
+     * @param  \Illuminate\Database\Query\Builder  $query
+     * @param  string  $code
+     * @return \Illuminate\Database\Query\Builder
      */
     public function scopeByCode($query, $code)
     {

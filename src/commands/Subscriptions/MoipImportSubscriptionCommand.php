@@ -5,14 +5,14 @@ use Softpampa\MoipLaravel\Models\MoipPlan;
 use Softpampa\MoipLaravel\Models\MoipSubscription;
 use Symfony\Component\Console\Input\InputArgument;
 
-class MoipImportSubscriptionCommand extends Command {
+class MoipSubscriptionImportCommand extends Command {
 
     /**
      * Command name
      *
      * @var string
      */
-    protected $name = 'moip:import_subscription';
+    protected $name = 'moip:subscription:import';
 
     /**
      * Command description

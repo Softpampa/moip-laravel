@@ -4,24 +4,44 @@ use Softpampa\MoipLaravel\Models\MoipCustomerCreditCard;
 
 class Customer {
 
+    /**
+     * When customer was created
+     * 
+     * @param  array  $data
+     * @return void
+     */
     public function onCreated($data)
     {
         $resource = $data['resource'];
 
         if (! empty($resource['billing_info']['credit_cards'])) {
-            MoipCustomerCreditCard::create(array_merge($resource['billing_info']['credit_cards'][0], ['customer_code' => $resource['code']]));
+            $this->addCustomerCreditCard($resource['code'], $resource['billing_info']['credit_cards']);
         }
     }
 
+    /**
+     * Add new customer credit card
+     * 
+     * @param  string  $code
+     * @param void
+     */
+    protected function addCustomerCreditCard($code, array $creditCard)
+    {
+        MoipCustomerCreditCard::create(array_merge($creditCard, ['customer_code' => $code]));
+    }
+
+    /**
+     * When customer was updated
+     * 
+     * @param  array  $data
+     * @return void
+     */
     public function onUpdated($data)
     {
         $resource = $data['resource'];
+        $creditCard = $resource['billing_info']['credit_cards'][0];
 
-        if (! empty($resource['billing_info']['credit_cards'])) {
-            $creditCard = $resource['billing_info']['credit_cards'][0];
-
-            \Log::info('HAS', [MoipCustomerCreditCard::byVault($creditCard['vault'])]);
-
+        if (! empty($creditCard)) {
              if ($card = MoipCustomerCreditCard::byVault($creditCard['vault'])->first()) {
                 $card->update([
                     'holder_name' => $creditCard['holder_name'],
@@ -31,7 +51,7 @@ class Customer {
                     'vault' => $creditCard['vault']
                 ]);
              } else {
-                $this->onCreated($data);
+                $this->addCustomerCreditCard($resource['code'], $creditCard);
              }
         }
     }

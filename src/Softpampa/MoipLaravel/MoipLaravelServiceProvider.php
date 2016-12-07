@@ -24,9 +24,9 @@ class MoipLaravelServiceProvider extends ServiceProvider {
 		$this->package('softpampa/moip-laravel');
 
 		// Commands
-		$this->commands('\Softpampa\MoipLaravel\Commands\Subscriptions\MoipSetupCommand');
-		$this->commands('\Softpampa\MoipLaravel\Commands\Subscriptions\MoipImportCommand');
-		$this->commands('\Softpampa\MoipLaravel\Commands\Subscriptions\MoipImportSubscriptionCommand');
+		$this->commands('\Softpampa\MoipLaravel\Commands\MoipSetupCommand');
+		$this->commands('\Softpampa\MoipLaravel\Commands\MoipImportCommand');
+		$this->commands('\Softpampa\MoipLaravel\Commands\Subscriptions\MoipSubscriptionImportCommand');
 
 		// Include package routes
 		include __DIR__.'/../../routes.php';
@@ -41,6 +41,7 @@ class MoipLaravelServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
+		// Bind Moip SDK
 		$this->app->singleton('moip-sdk', function($app) {
 
 			$key = $this->getConfig('config.key');

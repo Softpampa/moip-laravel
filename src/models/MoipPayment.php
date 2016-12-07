@@ -18,12 +18,12 @@ class MoipPayment extends Eloquent {
     ];
 
     /**
-     * Create a new payment
+     * Create a new payment if doesn't exists
      * 
      * @param  array  $data
      * @return void
      */
-    public static function create(array $data)
+    public static function firstOrCreate(array $data)
     {
         parent::create(self::prepareData($data));
     }
@@ -43,6 +43,13 @@ class MoipPayment extends Eloquent {
         return $data;
     }
 
+    /**
+     * Filter payment by Moip id
+     * 
+     * @param  \Illuminate\Database\Query\Builder  $query
+     * @param  int  $id
+     * @return \Illuminate\Database\Query\Builder
+     */
     public function scopeByMoipId($query, $id)
     {
         return $query->whereMoipId($id)->first();

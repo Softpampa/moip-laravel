@@ -15,9 +15,7 @@ class Subscription {
         $data = $data['resource'];
         $code = $data['code'];
 
-        if (MoipSubscription::byCode($code)->count() == 0) {
-            MoipSubscription::create($data);            
-        }
+        MoipSubscription::firstOrCreate($data);            
     }
 
     /**

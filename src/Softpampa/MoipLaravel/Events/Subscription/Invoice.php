@@ -4,16 +4,26 @@ use Softpampa\MoipLaravel\Models\MoipInvoice;
 
 class Invoice {
 
+    /**
+     * When invoice was created
+     * 
+     * @param  array  $data
+     * @return void
+     */
     public function onCreated($data)
     {
         $data = $data['resource'];
         $id = $data['id'];
 
-        if (MoipInvoice::byMoipId($id)->count() == 0) {
-            MoipInvoice::create($data);            
-        }
+        MoipInvoice::firstOrCreate($data);
     }
 
+    /**
+     * When invoices status was update
+     * 
+     * @param  array  $data
+     * @return void
+     */
     public function onStatusUpdated($data)
     {
         $id = $data['resource']['id'];

@@ -35,7 +35,7 @@ class MoipSubscription extends Eloquent {
      * @param  array  $data
      * @return void
      */
-    public static function create(array $data)
+    public static function firstOrCreate(array $data)
     {
         parent::create(self::prepareData($data));
     }

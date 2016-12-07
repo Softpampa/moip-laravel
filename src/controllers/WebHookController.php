@@ -13,7 +13,7 @@ class WebHookController extends \BaseController {
         // Fire event
         Event::fire(strtoupper($eventName), [Input::all()]);
 
-        return Response::make(trans('moip-laravel::moip.response', ['event' => $eventName]), 200);
+        return Response::make('😺'), 200);
     }
 
 }

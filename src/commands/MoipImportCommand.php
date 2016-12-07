@@ -1,4 +1,4 @@
-<?php namespace Softpampa\MoipLaravel\Commands\Subscriptions;
+<?php namespace Softpampa\MoipLaravel\Commands;
 
 use Illuminate\Console\Command;
 use Softpampa\MoipLaravel\Models\MoipPlan;
@@ -27,11 +27,11 @@ class MoipImportCommand extends Command {
      */
     public function fire()
     {
-        if ($this->confirm('Import plans? [yes|no]')) {
+        if ($this->confirm('Import Moip Subscription Plans? [yes|no]')) {
             $this->importPlans();
         }
 
-        if ($this->confirm('Import subscriptions? [yes|no]')) {
+        if ($this->confirm('Import Moip Subscriptions? [yes|no]')) {
             $this->importSubscriptions();
         }
     }
@@ -63,7 +63,7 @@ class MoipImportCommand extends Command {
     {
         $subscriptions = app('moip-subscriptions')->subscriptions()->all();
         
-        $this->info("Importing {$subscriptions->count()} plans");
+        $this->info("Importing {$subscriptions->count()} subscriptions");
 
         foreach ($subscriptions as $subscription) {
             MoipSubscription::create(json_decode(json_encode($subscription), true));
