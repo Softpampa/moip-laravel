@@ -14,12 +14,22 @@ class MoipCustomer extends Eloquent {
 	];
 
 	/**
-	 * Related subscriptions
+	 * Customer subscriptions
 	 *
 	 * @return void
 	 */
 	public function subscriptions()
 	{
 		return $this->hasMany(MoipSubscription::class, 'customer_code', 'code');
+	}
+
+	/**
+	 * Customer credit cards
+	 *
+	 * @return void
+	 */
+	public function creditCards()
+	{
+		return $this->hasMany(MoipCustomerCreditCard::class, 'customer_code', 'code');
 	}
 }

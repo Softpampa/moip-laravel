@@ -8,6 +8,8 @@ class SubscriptionsListener {
      * @var array
      */
     protected $listeners = [
+        'CUSTOMER.CREATED',
+        'CUSTOMER.UPDATED',
         'PLAN.CREATED',
         'PLAN.UPDATED',
         'PLAN.ACTIVATED',
