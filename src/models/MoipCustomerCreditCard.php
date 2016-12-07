@@ -25,8 +25,8 @@ class MoipCustomerCreditCard extends Eloquent {
 	 * @param  string  $valut
 	 * @return \Illuminate\Database\Query\Builder
 	 */
-	public function scopeByVault($query, $valut)
+	public function scopeByVault($query, $vault)
 	{
-		return $query->whereValut($valut);
+		return $query->whereVault($vault);
 	}
 }

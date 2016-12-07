@@ -33,7 +33,7 @@ class MoipPlan extends Eloquent {
 	 */
 	public static function firstOrCreate(array $data)
 	{
-		parent::create(self::prepareData($data));
+		parent::firstOrCreate(self::prepareData($data));
 	}
 
 	/**

@@ -24,7 +24,7 @@ class MoipInvoice extends Eloquent {
 	 */
 	public static function firstOrCreate(array $data)
 	{
-		parent::create(self::prepareData($data));
+		parent::firstOrCreate(self::prepareData($data));
 	}
 
 	/**
@@ -51,6 +51,13 @@ class MoipInvoice extends Eloquent {
 		return $this->hasMany(MoipPayment::class, 'invoice_id', 'moip_id');
 	}
 
+	/**
+	 * Filter invoice by Moip id
+	 * 
+	 * @param  \Illuminate\Database\Query\Builder  $query
+	 * @param  int  $id
+	 * @return \Illuminate\Database\Query\Builder
+	 */
 	public function scopeByMoipId($query, $id)
 	{
 		return $query->whereMoipId($id)->first();

@@ -48,7 +48,7 @@ class MoipImportCommand extends Command {
 		$this->info("Importing {$plans->count()} plans");
 
 		foreach ($plans as $plan) {
-			MoipPlan::create(json_decode(json_encode($plan), true));
+			MoipPlan::firstOrCreate(json_decode(json_encode($plan), true));
 		}
 
 		$this->info('Done!');
