@@ -24,7 +24,7 @@ class Subscription {
 	 * @param  array  $data
 	 * @return void
 	 */
-	public function onUpdate($data)
+	public function onUpdated($data)
 	{
 		$code = $data['resource']['code'];
 

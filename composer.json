@@ -1,6 +1,8 @@
 {
     "name": "softpampa/moip-laravel",
     "description": "Laravel package for Moip SDK PHP",
+    "keywords": ["moip", "package", "laravel"],
+    "license": "MIT",
     "authors": [
         {
             "name": "Nícolas Luís Huber",
