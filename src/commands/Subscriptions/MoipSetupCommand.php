@@ -1,4 +1,4 @@
-<?php namespace Softpampa\MoipLaravel\Commands;
+<?php namespace Softpampa\MoipLaravel\Commands\Subscriptions;
 
 use Illuminate\Console\Command;
 

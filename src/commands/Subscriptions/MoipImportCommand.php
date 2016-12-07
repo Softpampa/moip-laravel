@@ -1,8 +1,8 @@
-<?php namespace Softpampa\MoipLaravel\Commands;
+<?php namespace Softpampa\MoipLaravel\Commands\Subscriptions;
 
+use Illuminate\Console\Command;
 use Softpampa\MoipLaravel\Models\MoipPlan;
 use Softpampa\MoipLaravel\Models\MoipSubscription;
-use Illuminate\Console\Command;
 
 class MoipImportCommand extends Command {
 
