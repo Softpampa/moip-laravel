@@ -18,7 +18,7 @@ composer require softpampa/moip-laravel
 
 'aliases' => array(
     ...
-    'MoipPayments'    => 'Softpampa\MoipLaravel\MoipPaymentsFacade',
+    'MoipPayments' => 'Softpampa\MoipLaravel\MoipPaymentsFacade',
     'MoipSubscriptions' => 'Softpampa\MoipLaravel\MoipSubscriptionsFacade'
 )
 ```
@@ -43,6 +43,8 @@ $ php artisan moip:subscription:import $CODE
 ```
 
 ## Utilizando
+
+Relacionar model User com o MoipCustomer
 
 ```php
 <?php
