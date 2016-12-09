@@ -36,11 +36,16 @@ class MoipPayment extends Eloquent {
 	 */
 	protected static function prepareData($data)
 	{
-		$data['moip_id'] = $data['id'];
-		$data['moip_trans_id'] = $data['moip_id'];
-		$data['status'] = $data['status']['description'];
+		$prepared = [];
 
-		return $data;
+		$prepared['moip_id'] = $data['id'];
+		$prepared['moip_trans_id'] = $data['moip_id'];
+		$prepared['status'] = $data['status']['description'];
+
+		$prepared['amount'] = $data['amount'];
+		$prepared['invoice_id'] = $data['invoice_id'];
+
+		return $prepared;
 	}
 
 	/**

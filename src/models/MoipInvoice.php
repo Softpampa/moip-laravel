@@ -35,10 +35,15 @@ class MoipInvoice extends Eloquent {
 	 */
 	protected static function prepareData($data)
 	{
-		$data['moip_id'] = $data['id'];
-		$data['status'] = $data['status']['description'];
+		$prepared = [];
+		
+		$prepared['moip_id'] = $data['id'];
+		$prepared['status'] = $data['status']['description'];
+		
+		$prepared['amount'] = $data['amount'];
+		$prepared['subscription_code'] = $data['subscription_code'];
 
-		return $data;
+		return $prepared;
 	}
 
 	/**

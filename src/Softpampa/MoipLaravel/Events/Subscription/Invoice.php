@@ -13,7 +13,6 @@ class Invoice {
 	public function onCreated($data)
 	{
 		$data = $data['resource'];
-		$id = $data['id'];
 
 		MoipInvoice::firstOrCreate($data);
 	}

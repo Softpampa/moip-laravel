@@ -55,23 +55,33 @@ class MoipPlan extends Eloquent {
 	 */
 	protected static function prepareData($data)
 	{
+		$prepared = [];
+
 		if (isset($data['trial'])) {
 			$trial = $data['trial'];
 
-			$data['trial_enable'] = $trial['enabled'];
-			$data['trial_days'] = $trial['days'];
-			$data['trial_hold_setup_fee'] = $trial['hold_setup_fee'];
+			$prepared['trial_enable'] = $trial['enabled'];
+			$prepared['trial_days'] = $trial['days'];
+			$prepared['trial_hold_setup_fee'] = $trial['hold_setup_fee'];
 		}
 
 		if (isset($data['interval'])) {
 			$interval = $data['interval'];
 
-			$data['interval_length'] = $interval['length'];
-			$data['interval_unit'] = $interval['unit'];
+			$prepared['interval_length'] = $interval['length'];
+			$prepared['interval_unit'] = $interval['unit'];
 		}
 
+		$prepared['code'] = $data['code'];
+		$prepared['name'] = $data['name'];
+		$prepared['description'] = $data['description'];
+		$prepared['amount'] = $data['amount'];
+		$prepared['max_qty'] = $data['max_qty'];
+		$prepared['billing_cycles'] = $data['billing_cycles'];
+		$prepared['setup_fee'] = $data['setup_fee'];
+		$prepared['status'] = $data['status'];
 
-		return $data;
+		return $prepared;
 	}
 
 	/**
