@@ -87,7 +87,7 @@ Para receber requisições do Moip é necessário configurar a URL de Webhook
 $ php artisan moip:setup
 ```
 
-## WebTunnel para localhost
+### WebTunnel para localhost
 
 Caso a aplicações esteja rodando no localhost é necessário criar um WebTunnel, o [ngrok](https://ngrok.com/) dá conta da situação:
 
@@ -101,6 +101,6 @@ $ php artisan moip:setup
 
 ## Todo
 
- * Criar controle ao importar dados para existir duplicados.
- * Buscar na API se assinatura, fatura, pagamento ou plano não extiverem no banco de dados
+ * Criar controle ao importar dados para existir duplicados;
+ * Buscar na API se assinatura, fatura, pagamento ou plano se não existirem no banco de dados.
 
