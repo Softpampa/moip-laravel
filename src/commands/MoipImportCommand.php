@@ -66,7 +66,7 @@ class MoipImportCommand extends Command {
 		$this->info("Importing {$subscriptions->count()} subscriptions");
 
 		foreach ($subscriptions as $subscription) {
-			MoipSubscription::create(json_decode(json_encode($subscription), true));
+			MoipSubscription::firstOrCreate(json_decode(json_encode($subscription), true));
 		}
 
 		$this->info('Done!');
