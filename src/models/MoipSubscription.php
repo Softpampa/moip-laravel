@@ -96,7 +96,10 @@ class MoipSubscription extends Eloquent {
 
 		$prepared['plan_code'] = $data['plan']['code'];
 		$prepared['customer_code'] = $data['customer']['code'];
-		$prepared['next_invoice_date'] = self::convertMoipDate($data['next_invoice_date']);
+		
+		if (isset($data['next_invoice_date'])) {
+			$prepared['next_invoice_date'] = self::convertMoipDate($data['next_invoice_date']);
+		}
 
 		if (isset($data['expiration_date'])) {
 			$prepared['expiration_date'] = self::convertMoipDate($data['expiration_date']);
