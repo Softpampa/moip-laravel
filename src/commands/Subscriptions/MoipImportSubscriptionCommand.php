@@ -31,7 +31,7 @@ class MoipSubscriptionImportCommand extends Command {
 		$code = $this->argument('code');
 		$subscription = app('moip-subscriptions')->subscriptions()->find($code);
 
-		MoipSubscription::create(json_decode(json_encode($subscription), true));
+		MoipSubscription::firstOrCreate(json_decode(json_encode($subscription), true));
 
 		$this->info("Imported subscription {$code}!");
 	}
