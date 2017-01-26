@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class MoipSubscription extends Eloquent
 {
-    
+
     /**
      * Mass Assignment
      *
@@ -29,6 +29,15 @@ class MoipSubscription extends Eloquent
     protected $dates = [
         'next_invoice_date'
     ];
+
+    /**
+     * Subscription Customer
+     * @return Softpampa\MoipLaravel\Models\MoipCustomer
+     */
+    public function customer()
+    {
+        return $this->belongsTo(MoipCustomer::class, 'customer_code', 'code');
+    }
 
     /**
      * Create a new subscription if doesn't exists
@@ -86,43 +95,6 @@ class MoipSubscription extends Eloquent
     }
 
     /**
-     * Prepare data from Moip POST to database table
-     *
-     * @param  array  $data
-     * @return array
-     */
-    protected static function prepareData($data)
-    {
-        $prepared = [];
-
-        $prepared['plan_code'] = $data['plan']['code'];
-        $prepared['customer_code'] = $data['customer']['code'];
-        
-        if (isset($data['next_invoice_date'])) {
-            $prepared['next_invoice_date'] = self::convertMoipDate($data['next_invoice_date']);
-        }
-
-        if (isset($data['expiration_date'])) {
-            $prepared['expiration_date'] = self::convertMoipDate($data['expiration_date']);
-        }
-
-        $prepared['code'] = $data['code'];
-        $prepared['amount'] = $data['amount'];
-        $prepared['status'] = $data['status'];
-
-        return $prepared;
-    }
-
-    protected static function convertMoipDate($date)
-    {
-        $day = $date['day'];
-        $month = $date['month'];
-        $year = $date['year'];
-
-        return Carbon::createFromDate($year, $month, $day);
-    }
-
-    /**
      * Plan related to the subscription
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -152,5 +124,42 @@ class MoipSubscription extends Eloquent
     public function scopeByCode($query, $code)
     {
         return $query->whereCode($code)->first();
+    }
+
+    /**
+     * Prepare data from Moip POST to database table
+     *
+     * @param  array  $data
+     * @return array
+     */
+    protected static function prepareData($data)
+    {
+        $prepared = [];
+
+        $prepared['plan_code'] = $data['plan']['code'];
+        $prepared['customer_code'] = $data['customer']['code'];
+
+        if (isset($data['next_invoice_date'])) {
+            $prepared['next_invoice_date'] = self::convertMoipDate($data['next_invoice_date']);
+        }
+
+        if (isset($data['expiration_date'])) {
+            $prepared['expiration_date'] = self::convertMoipDate($data['expiration_date']);
+        }
+
+        $prepared['code'] = $data['code'];
+        $prepared['amount'] = $data['amount'];
+        $prepared['status'] = $data['status'];
+
+        return $prepared;
+    }
+
+    protected static function convertMoipDate($date)
+    {
+        $day = $date['day'];
+        $month = $date['month'];
+        $year = $date['year'];
+
+        return Carbon::createFromDate($year, $month, $day);
     }
 }

@@ -63,7 +63,7 @@ class MoipImportCommand extends Command
     protected function importSubscriptions()
     {
         $subscriptions = app('moip-subscriptions')->subscriptions()->all();
-        
+
         $this->info("Importing {$subscriptions->count()} subscriptions");
 
         foreach ($subscriptions as $subscription) {

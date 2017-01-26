@@ -67,7 +67,6 @@ class Subscription
     public function onCanceled($data)
     {
         $code = $data['resource']['code'];
-
-        MoipSubscription::byCode($code)->cancel();
+        $subscription = MoipSubscription::byCode($code)->cancel();
     }
 }
