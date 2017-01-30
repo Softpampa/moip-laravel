@@ -2,36 +2,36 @@
 
 use Softpampa\MoipLaravel\Models\MoipPayment;
 
-class Payment {
+class Payment
+{
 
-	/**
-	 * When a payment was created
-	 * 
-	 * @param  array  $data
-	 * @return void
-	 */
-	public function onCreated($data)
-	{
-		$data = $data['resource'];
-		$id = $data['id'];
+    /**
+     * When a payment was created
+     *
+     * @param  array  $data
+     * @return void
+     */
+    public function onCreated($data)
+    {
+        $data = $data['resource'];
+        $id = $data['id'];
 
-		MoipPayment::firstOrCreate($data);
-	}
+        MoipPayment::firstOrCreate($data);
+    }
 
-	/**
-	 * When a payment status was update
-	 * 
-	 * @param  array  $data
-	 * @return void
-	 */
-	public function onStatusUpdated($data)
-	{
-		$id = $data['resource']['id'];
-		$status = $data['resource']['status'];
+    /**
+     * When a payment status was update
+     *
+     * @param  array  $data
+     * @return void
+     */
+    public function onStatusUpdated($data)
+    {
+        $id = $data['resource']['id'];
+        $status = $data['resource']['status'];
 
-		MoipPayment::byMoipId($id)->update([
-			'status' => $status['description']
-		]);
-	}
-
+        MoipPayment::byMoipId($id)->update([
+            'status' => $status['description']
+        ]);
+    }
 }

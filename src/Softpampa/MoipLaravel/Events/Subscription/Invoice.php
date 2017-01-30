@@ -2,35 +2,35 @@
 
 use Softpampa\MoipLaravel\Models\MoipInvoice;
 
-class Invoice {
+class Invoice
+{
 
-	/**
-	 * When invoice was created
-	 * 
-	 * @param  array  $data
-	 * @return void
-	 */
-	public function onCreated($data)
-	{
-		$data = $data['resource'];
+    /**
+     * When invoice was created
+     *
+     * @param  array  $data
+     * @return void
+     */
+    public function onCreated($data)
+    {
+        $data = $data['resource'];
 
-		MoipInvoice::firstOrCreate($data);
-	}
+        MoipInvoice::firstOrCreate($data);
+    }
 
-	/**
-	 * When invoices status was update
-	 * 
-	 * @param  array  $data
-	 * @return void
-	 */
-	public function onStatusUpdated($data)
-	{
-		$id = $data['resource']['id'];
-		$status = $data['resource']['status'];
+    /**
+     * When invoices status was update
+     *
+     * @param  array  $data
+     * @return void
+     */
+    public function onStatusUpdated($data)
+    {
+        $id = $data['resource']['id'];
+        $status = $data['resource']['status'];
 
-		MoipInvoice::byMoipId($id)->update([
-			'status' => $status['description']
-		]);
-	}
-
+        MoipInvoice::byMoipId($id)->update([
+            'status' => $status['description']
+        ]);
+    }
 }
