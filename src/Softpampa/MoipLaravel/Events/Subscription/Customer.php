@@ -4,7 +4,6 @@ use Softpampa\MoipLaravel\Models\MoipCustomerCreditCard;
 
 class Customer
 {
-
     /**
      * When customer was created
      *

@@ -4,7 +4,6 @@ use Softpampa\MoipLaravel\Models\MoipInvoice;
 
 class Invoice
 {
-
     /**
      * When invoice was created
      *

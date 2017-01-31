@@ -2,7 +2,6 @@
 
 class SubscriptionsListener
 {
-
     /**
      * Event listener list
      *

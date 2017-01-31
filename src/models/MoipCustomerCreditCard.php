@@ -1,10 +1,9 @@
-<?php namespace Softpampa\MoipLaravel\Models;
+<?php namespace Softpampa\MoipLaravel\models;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class MoipCustomerCreditCard extends Eloquent
 {
-
     /**
      * Mass Assignment
      *

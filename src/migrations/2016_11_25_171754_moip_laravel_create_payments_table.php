@@ -5,7 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class MoipLaravelCreatePaymentsTable extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -13,8 +12,9 @@ class MoipLaravelCreatePaymentsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('moip_payments');
         Schema::create('moip_payments', function (Blueprint $table) {
-        
+
             $table->increments('id');
             $table->integer('amount')->unsigned();
             $table->integer('invoice_id')->unsigned();
