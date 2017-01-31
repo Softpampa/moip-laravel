@@ -1,4 +1,4 @@
-<?php namespace Softpampa\MoipLaravel\Commands\Subscriptions;
+<?php namespace Softpampa\MoipLaravel\commands\Subscriptions;
 
 use Illuminate\Console\Command;
 use Softpampa\MoipLaravel\Models\MoipPlan;
@@ -7,7 +7,6 @@ use Symfony\Component\Console\Input\InputArgument;
 
 class MoipSubscriptionImportCommand extends Command
 {
-
     /**
      * Command name
      *

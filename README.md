@@ -1,6 +1,8 @@
 # Moip Laravel
 Este package permite receber WebHooks do Moip assim como fornece Façades para o [Moip SDK](https://github.com/Softpampa/moip-sdk-php).
 
+## 1.0.7
+
 ## Instalação
 
 Via composer
@@ -25,10 +27,10 @@ composer require softpampa/moip-laravel
 
 Para publicar o arquivo de configuração e criar as tabelas. Execute:
 
-```shell 
+```shell
 $ php artisan config:publish softpampa/moip-laravel
 $ php artisan migrate --package="softpampa/moip-laravel"
-``` 
+```
 
 Importar planos e assinaturas
 
@@ -52,7 +54,7 @@ Relacionar model User com o MoipCustomer
 use Softpampa\MoipLaravel\Models\MoipCustomer;
 
 class User extends Eloquent {
-    
+
     public function moip()
     {
         return $this->hasOne(MoipCustomer::class, 'user_id', 'id');
@@ -103,6 +105,6 @@ $ php artisan moip:setup
 
 ## Todo
 
- * Criar controle ao importar dados para existir duplicados;
- * Buscar na API se assinatura, fatura, pagamento ou plano se não existirem no banco de dados.
+ * Criar controle ao importar dados para evitar duplicados;
+ * Atualizar dados do sistema com os dados do MoIP.
 

@@ -1,10 +1,9 @@
-<?php namespace Softpampa\MoipLaravel\Commands;
+<?php namespace Softpampa\MoipLaravel\commands;
 
 use Illuminate\Console\Command;
 
 class MoipSetupCommand extends Command
 {
-
     /**
      * Command name
      *

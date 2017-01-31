@@ -5,7 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class MoipLaravelCreatePlansTable extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -13,8 +12,9 @@ class MoipLaravelCreatePlansTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('moip_plans');
         Schema::create('moip_plans', function (Blueprint $table) {
-        
+
             $table->increments('id');
             $table->string('code');
             $table->string('name');

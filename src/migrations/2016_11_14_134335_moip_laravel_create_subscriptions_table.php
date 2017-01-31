@@ -5,7 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class MoipLaravelCreateSubscriptionsTable extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -13,8 +12,9 @@ class MoipLaravelCreateSubscriptionsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('moip_subscriptions');
         Schema::create('moip_subscriptions', function (Blueprint $table) {
-        
+
             $table->increments('id');
             $table->string('code');
             $table->string('status');

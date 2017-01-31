@@ -4,7 +4,6 @@ use Softpampa\MoipLaravel\Models\MoipSubscription;
 
 class Subscription
 {
-
     /**
      * When plan was created.
      *
