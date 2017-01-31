@@ -4,7 +4,6 @@ use Softpampa\MoipLaravel\Models\MoipPlan;
 
 class Plan
 {
-
     /**
      * When plan was created.
      *

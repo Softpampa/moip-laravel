@@ -1,4 +1,4 @@
-<?php namespace Softpampa\MoipLaravel\Commands;
+<?php namespace Softpampa\MoipLaravel\commands;
 
 use Illuminate\Console\Command;
 use Softpampa\MoipLaravel\Models\MoipPlan;
@@ -6,7 +6,6 @@ use Softpampa\MoipLaravel\Models\MoipSubscription;
 
 class MoipImportCommand extends Command
 {
-
     /**
      * Command name
      *
@@ -71,6 +70,5 @@ class MoipImportCommand extends Command
         }
 
         $this->info('Done!');
-
     }
 }

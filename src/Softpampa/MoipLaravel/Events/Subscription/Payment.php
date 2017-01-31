@@ -4,7 +4,6 @@ use Softpampa\MoipLaravel\Models\MoipPayment;
 
 class Payment
 {
-
     /**
      * When a payment was created
      *
