@@ -5,7 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class MoipLaravelCreateCreditCardsTable extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -13,8 +12,9 @@ class MoipLaravelCreateCreditCardsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('moip_customer_credit_cards');
         Schema::create('moip_customer_credit_cards', function (Blueprint $table) {
-        
+
             $table->increments('id');
             $table->string('customer_code');
             $table->string('holder_name');

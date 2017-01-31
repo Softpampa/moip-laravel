@@ -5,7 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class MoipLaravelCreateCustomersTable extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -13,8 +12,9 @@ class MoipLaravelCreateCustomersTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('moip_customers');
         Schema::create('moip_customers', function (Blueprint $table) {
-        
+
             $table->increments('id');
             $table->string('code');
             $table->integer('user_id')->unsigned();
