@@ -159,6 +159,6 @@ class MoipSubscription extends Eloquent
         $month = $date['month'];
         $year = $date['year'];
 
-        return Carbon::createFromDate($year, $month, $day);
+        return Carbon::createFromDate($year, $month, $day)->format('Y-m-d');
     }
 }
