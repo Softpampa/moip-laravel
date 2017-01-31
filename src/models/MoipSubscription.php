@@ -1,4 +1,4 @@
-<?php namespace Softpampa\MoipLaravel\Models;
+<?php namespace Softpampa\MoipLaravel\models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model as Eloquent;
