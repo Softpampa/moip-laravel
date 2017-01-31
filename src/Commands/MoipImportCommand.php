@@ -1,4 +1,4 @@
-<?php namespace Softpampa\MoipLaravel\commands;
+<?php namespace Softpampa\MoipLaravel\Commands;
 
 use Illuminate\Console\Command;
 use Softpampa\MoipLaravel\Models\MoipPlan;
