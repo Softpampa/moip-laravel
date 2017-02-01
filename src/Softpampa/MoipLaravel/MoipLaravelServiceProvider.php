@@ -48,7 +48,7 @@ class MoipLaravelServiceProvider extends ServiceProvider
             $token = $this->getConfig('config.token');
             $env = $this->getConfig('config.env');
 
-            return new Moip(new MoipBasicAuth($key, $token), $env);
+            return new Moip(new MoipBasicAuth($token, $key), $env);
         });
 
         $this->app->singleton('moip-subscriptions', function ($app) {
