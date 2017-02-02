@@ -1,6 +1,6 @@
 <?php namespace Softpampa\MoipLaravel\Events\Subscription;
 
-use Softpampa\MoipLaravel\Models\MoipSubscription;
+use Softpampa\MoipLaravel\models\MoipSubscription;
 
 class Subscription
 {

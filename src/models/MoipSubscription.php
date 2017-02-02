@@ -31,7 +31,7 @@ class MoipSubscription extends Eloquent
 
     /**
      * Subscription Customer
-     * @return Softpampa\MoipLaravel\Models\MoipCustomer
+     * @return Softpampa\MoipLaravel\models\MoipCustomer
      */
     public function customer()
     {
