@@ -1,6 +1,6 @@
 <?php namespace Softpampa\MoipLaravel\Events\Subscription;
 
-use Softpampa\MoipLaravel\Models\MoipCustomerCreditCard;
+use Softpampa\MoipLaravel\models\MoipCustomerCreditCard;
 
 class Customer
 {
