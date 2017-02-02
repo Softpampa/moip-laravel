@@ -1,6 +1,6 @@
 <?php namespace Softpampa\MoipLaravel\Events\Subscription;
 
-use Softpampa\MoipLaravel\Models\MoipInvoice;
+use Softpampa\MoipLaravel\models\MoipInvoice;
 
 class Invoice
 {

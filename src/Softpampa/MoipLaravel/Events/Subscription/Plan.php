@@ -1,6 +1,6 @@
 <?php namespace Softpampa\MoipLaravel\Events\Subscription;
 
-use Softpampa\MoipLaravel\Models\MoipPlan;
+use Softpampa\MoipLaravel\models\MoipPlan;
 
 class Plan
 {
@@ -53,7 +53,7 @@ class Plan
     public function onActivated($data)
     {
         $code = $data['resource']['code'];
-        
+
         MoipPlan::byCode($code)->activate();
     }
 }
