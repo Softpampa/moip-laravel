@@ -15,7 +15,7 @@ class Customer
         $resource = $data['resource'];
 
         if (! empty($resource['billing_info']['credit_cards'])) {
-            $this->addCustomerCreditCard($resource['code'], $resource['billing_info']['credit_cards']);
+            $this->addCustomerCreditCard($resource['code'], $resource['billing_info']['credit_cards'][0]);
         }
     }
 
