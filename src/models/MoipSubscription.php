@@ -11,13 +11,15 @@ class MoipSubscription extends Eloquent
      * @var array
      */
     protected $fillable = [
-        'code',
         'amount',
-        'status',
-        'plan_code',
+        'code',
         'customer_code',
         'expiration_date',
+        'link',
         'next_invoice_date',
+        'payment_method',
+        'plan_code',
+        'status',
     ];
 
     /**
@@ -149,6 +151,7 @@ class MoipSubscription extends Eloquent
         $prepared['code'] = $data['code'];
         $prepared['amount'] = $data['amount'];
         $prepared['status'] = $data['status'];
+        $prepared['payment_method'] = $data['payment_method'];
 
         return $prepared;
     }
