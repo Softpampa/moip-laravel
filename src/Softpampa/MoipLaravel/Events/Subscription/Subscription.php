@@ -15,7 +15,13 @@ class Subscription
         $data = $data['resource'];
         $code = $data['code'];
 
-        MoipSubscription::firstOrCreate($data);
+        $subscription = MoipSubscription::byCode($code)->first();
+
+        if ($subscription) {
+            $this->onUpdated($data);
+        } else {
+            MoipSubscription::firstOrCreate($data);
+        }
     }
 
     /**

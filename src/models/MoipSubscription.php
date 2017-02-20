@@ -11,13 +11,16 @@ class MoipSubscription extends Eloquent
      * @var array
      */
     protected $fillable = [
-        'code',
         'amount',
-        'status',
-        'plan_code',
+        'code',
         'customer_code',
         'expiration_date',
+        'link',
         'next_invoice_date',
+        'payment_method',
+        'plan_code',
+        'status',
+        'email_sended',
     ];
 
     /**
@@ -46,7 +49,14 @@ class MoipSubscription extends Eloquent
      */
     public static function firstOrCreate(array $data)
     {
-        parent::firstOrCreate(self::prepareData($data));
+        $subscription = parent::whereCode($data['code'])->first();
+        if (isset($data['code']) and $subscription) {
+            $subscription->update(self::prepareData($data));
+        } else {
+            $subscription = parent::firstOrCreate(self::prepareData($data));
+        }
+
+        return $subscription;
     }
 
     /**
@@ -135,20 +145,42 @@ class MoipSubscription extends Eloquent
     {
         $prepared = [];
 
-        $prepared['plan_code'] = $data['plan']['code'];
-        $prepared['customer_code'] = $data['customer']['code'];
+        if (isset($data['plan']) and isset($data['plan']['code'])) {
+            $prepared['plan_code'] = $data['plan']['code'];
+        }
+
+        if (isset($data['customer']) and isset($data['customer']['code'])) {
+            $prepared['customer_code'] = $data['customer']['code'];
+        }
 
         if (isset($data['next_invoice_date'])) {
-            $prepared['next_invoice_date'] = self::convertMoipDate($data['next_invoice_date']);
+            if (is_array($data['next_invoice_date'])) {
+                $prepared['next_invoice_date'] = self::convertMoipDate($data['next_invoice_date']);
+            } else {
+                $prepared['next_invoice_date'] = $data['next_invoice_date'];
+            }
         }
 
         if (isset($data['expiration_date'])) {
-            $prepared['expiration_date'] = self::convertMoipDate($data['expiration_date']);
+            if (is_array($data['expiration_date'])) {
+                $prepared['expiration_date'] = self::convertMoipDate($data['expiration_date']);
+            } else {
+                $prepared['expiration_date'] = $data['expiration_date'];
+            }
         }
 
         $prepared['code'] = $data['code'];
         $prepared['amount'] = $data['amount'];
         $prepared['status'] = $data['status'];
+        $prepared['payment_method'] = $data['payment_method'];
+
+        if ($data['payment_method'] == 'BOLETO') {
+            if (isset($data['_links'])) {
+                $prepared['link'] = $data['_links']['boleto']['redirect_href'];
+            } elseif (isset($data['link'])) {
+                $prepared['link'] = $data['link'];
+            }
+        }
 
         return $prepared;
     }
