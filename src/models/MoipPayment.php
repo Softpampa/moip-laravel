@@ -39,11 +39,16 @@ class MoipPayment extends Eloquent
         $prepared = [];
 
         $prepared['moip_id'] = $data['id'];
-        $prepared['moip_trans_id'] = $data['moip_id'];
         $prepared['status'] = $data['status']['description'];
-
         $prepared['amount'] = $data['amount'];
         $prepared['invoice_id'] = $data['invoice_id'];
+
+        if ($data['payment_method']['code'] == 1) {
+            // Cartão de crédito
+            $prepared['moip_trans_id'] = $data['moip_id'];
+        } else {
+            // Boleto
+        }
 
         return $prepared;
     }

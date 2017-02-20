@@ -153,6 +153,10 @@ class MoipSubscription extends Eloquent
         $prepared['status'] = $data['status'];
         $prepared['payment_method'] = $data['payment_method'];
 
+        if ($data['payment_method'] == 'BOLETO' and isset($data['_links'])) {
+            $prepared['link'] = $data['_links']['boleto']['redirect_href'];
+        }
+
         return $prepared;
     }
 
